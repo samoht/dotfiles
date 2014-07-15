@@ -3,13 +3,9 @@
 (xterm-mouse-mode t)
 (defun track-mouse (e))
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp")
-
 (require 'package)
 (add-to-list 'package-archives
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+   '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;; tuareg-mode
@@ -23,15 +19,24 @@
 	      auto-mode-alist))
 
 ;; ocp-indent
-(load-file "/usr/local/share/typerex/ocp-indent/ocp-indent.el")
-(custom-set-variables '(ocp-indent-syntax (quote ("lwt"))))
+(add-to-list 'load-path "/Users/thomas/.opam/system/share/emacs/site-lisp")
+(require 'ocp-indent)
 
 ;; ocp-index
-(load-file "/usr/local/share/typerex/ocp-index/ocp-index.el")
+(require 'merlin)
+(require 'merlin-iedit)
+(add-hook 'tuareg-mode-hook 'merlin-mode)
+(setq merlin-use-auto-complete-mode t)
+(setq ac-auto-show-menu t)
+(setq ac-auto-start nil)
+(setq ac-delay 0.0)
+(setq ac-expand-on-auto-complete nil)
+(setq ac-ignore-case nil)
+(setq ac-quick-help-delay 2)
+(setq ac-trigger-commands nil)
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+;; (require 'ocp-index)
 (global-set-key [backtab] 'auto-complete)
-
-;; display and remove trailing whitespaces
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Colored buffers
 (require 'ansi-color)
@@ -44,3 +49,9 @@
 ;; Enable copy/past
 (require 'pbcopy)
 (turn-on-pbcopy)
+
+;; Remove trailing white-space
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(custom-set-faces
+ '(caml-types-expr-face ((t (:background "white" :foreground "black"))) t))
