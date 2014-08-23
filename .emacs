@@ -51,6 +51,9 @@
 (turn-on-pbcopy)
 
 ;; Remove trailing white-space
+(require 'whitespace)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(global-whitespace-mode t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (custom-set-faces
