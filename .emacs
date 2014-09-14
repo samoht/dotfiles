@@ -25,19 +25,10 @@
 ;; merlin
 (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
 (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-(require 'merlin)
-(require 'merlin-iedit)
 (add-hook 'tuareg-mode-hook 'merlin-mode)
-(setq merlin-use-auto-complete-mode t)
-(setq ac-auto-show-menu t)
-(setq ac-auto-start nil)
-(setq ac-delay 0.0)
-(setq ac-expand-on-auto-complete nil)
-(setq ac-ignore-case nil)
-(setq ac-quick-help-delay 2)
-(setq ac-trigger-commands nil)
-;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-;; (require 'ocp-index)
+(require 'merlin)
+;; (require 'merlin-iedit)
+(setq merlin-use-auto-complete-mode 'easy)
 (global-set-key [backtab] 'auto-complete)
 
 ;; Colored buffers
