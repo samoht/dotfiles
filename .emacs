@@ -55,6 +55,7 @@
 ;; Remove trailing white-space
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
+(set-face-attribute 'whitespace-space nil :background "red" :foreground "blue")
 (global-whitespace-mode t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
