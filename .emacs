@@ -9,14 +9,8 @@
 (package-initialize)
 
 ;; tuareg-mode
-(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
-(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
-(autoload 'tuareg-imenu-set-imenu "tuareg-imenu"
-  "Configuration of imenu for tuareg" t)
-(setq auto-mode-alist
-      (append '(("\\.ml[ily]?$" . tuareg-mode)
-		("\\.topml$" . tuareg-mode))
-	      auto-mode-alist))
+(add-to-list 'load-path "/Users/thomas/.opam/system/tuareg")
+(load "tuareg-site-file")
 
 ;; ocp-indent
 (add-to-list 'load-path "/Users/thomas/.opam/system/share/emacs/site-lisp")
