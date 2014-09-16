@@ -33,7 +33,7 @@
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;; Enable copy/past
+;; Enable copy/past in terminals
 (require 'pbcopy)
 (turn-on-pbcopy)
 
