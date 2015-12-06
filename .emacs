@@ -8,12 +8,15 @@
    '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+;; add the system switch path to loaded paths
+;; need: opam install ocp-indent tuareg
+(setq opam-system-share (substring (shell-command-to-string "opam config var share --switch=system 2> /dev/null") 0 -1))
+(add-to-list 'load-path (concat opam-system-share "/emacs/site-lisp"))
+
 ;; tuareg-mode
-(add-to-list 'load-path "/Users/thomas/.opam/system/tuareg")
 (load "tuareg-site-file")
 
 ;; ocp-indent
-(add-to-list 'load-path "/Users/thomas/.opam/system/share/emacs/site-lisp")
 (require 'ocp-indent)
 
 ;; merlin
@@ -22,6 +25,8 @@
 (add-hook 'tuareg-mode-hook 'merlin-mode)
 (require 'merlin)
 ;; (require 'merlin-iedit)
+;; need: M-x package-install auto-complete
+(require 'auto-complete)
 (setq merlin-use-auto-complete-mode 'easy)
 (global-set-key [backtab] 'auto-complete)
 
@@ -34,6 +39,7 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; Enable copy/past in terminals
+;; need: M-x package-install pbcopy
 (require 'pbcopy)
 (turn-on-pbcopy)
 
